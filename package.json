@@ -1,0 +1,31 @@
+{
+  "name": "nodejs-clis",
+  "version": "1.1.0",
+  "description": "A collection of CLI utilities",
+  "scripts": {
+    "test": "mocha --compilers js:babel-register test/spec",
+    "dev": "run-p watch:test watch:lint",
+    "lint": "eslint ./",
+    "watch:test": "nodemon --exec \"npm test || true\"",
+    "watch:lint": "nodemon --exec \"npm run lint || true\""
+  },
+  "author": "Adam Crabtree",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.16.0",
+    "babel-preset-nodev6": "^1.0.0",
+    "babel-register": "^6.14.0",
+    "nodemon": "^1.10.2",
+    "npm-run-all": "^3.1.0",
+    "songbird": "^1.0.4",
+    "trycatch": "^1.5.21"
+  },
+  "devDependencies": {
+    "rimraf": "^2.5.4",
+    "babel-eslint": "^7.0.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.7.0",
+    "eslint-config-noderiety": "^1.1.1",
+    "mocha": "^3.0.2"
+  }
+}
