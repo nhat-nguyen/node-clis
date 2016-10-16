@@ -9,7 +9,17 @@
     "watch:test": "nodemon --exec \"npm test || true\"",
     "watch:lint": "nodemon --exec \"npm run lint || true\""
   },
-  "author": "Adam Crabtree",
+  "bin": {
+    "cli-cat": "./cat.js",
+    "cli-echo": "./echo.js",
+    "cli-grep": "./grep.js",
+    "cli-helper": "./helper.js",
+    "cli-ls": "./ls.js",
+    "cli-mkdir": "./mkdir.js",
+    "cli-rm": "./rm.js",
+    "cli-touch": "./touch.js"
+  },
+  "author": "Nhat Nguyen",
   "license": "MIT",
   "dependencies": {
     "babel-cli": "^6.16.0",
