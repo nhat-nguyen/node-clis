@@ -1,11 +1,13 @@
 #!/usr/bin/env babel-node
 
+// Please use -R to do a regex recursive search
 require('./helper');
 let fs = require('fs'),
     path = require('path'),
     EventEmitter = require('events'),
     inFilePattern = process.argv[2],
-    filePathPattern = process.argv[3];
+    filePathPattern = process.argv[3],
+    isRecursive = process.argv.includes('-R');
 
 // ls version using EventEmitter instead of Promises :)
 class Ls extends EventEmitter {
@@ -37,13 +39,16 @@ function grep(pattern, file) {
     });
 }
 
+if (isRecursive) {
+    let filePathRegEx = new RegExp(__dirname + '/' + filePathPattern, 'i');
+    let ls = new Ls();
 
-let filePathRegEx = new RegExp('^' + __dirname + '/' + filePathPattern + '$', 'i');
-let ls = new Ls();
-
-ls.list(__dirname);
-ls.on('filePath', (filePath) => {
-    if (filePath.match(filePathRegEx)) {
-        grep(inFilePattern, filePath);
-    }
-});
+    ls.list(__dirname);
+    ls.on('filePath', (filePath) => {
+        if (filePath.match(filePathRegEx)) {
+            grep(inFilePattern, filePath);
+        }
+    });
+} else {
+    grep(inFilePattern, filePathPattern);
+}
